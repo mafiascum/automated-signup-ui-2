@@ -20,7 +20,7 @@ var config = {
         loaders: [
             {
                 test: /\.js$/,
-                loader: 'babel-loader',
+                loaders: ['ng-annotate', 'babel-loader'],
                 exclude: /node_modules/
             },
             {
@@ -41,6 +41,10 @@ var config = {
                     'file?hash=sha512&digest=hex&name=[hash].[ext]',
                     'image?bypassOnDebug&optimizationLevel=7&interlaced=false'
                 ]
+            },
+            {
+                test: /\.(eot|svg|ttf|woff|woff2)$/,
+                loader: 'url-loader?limit=100000'
             }
         ]
     },
