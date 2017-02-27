@@ -52,7 +52,14 @@ angular.module('ms-as-ui', [
 	});
 
         $stateProvider.state('game_queues_edit', {
-	    url: '/game_queues/:id',
+	    url: '/game_queues/edit/:id',
+	    templateUrl: '/public/templates/game_queues_edit.html',
+            controller: 'GameQueuesEditCtrl',
+            controllerAs: 'vm'
+	});
+
+        $stateProvider.state('game_queues_add', {
+	    url: '/game_queues/add',
 	    templateUrl: '/public/templates/game_queues_edit.html',
             controller: 'GameQueuesEditCtrl',
             controllerAs: 'vm'
