@@ -2,6 +2,7 @@
 import angular from 'angular';
 import uiRouter from 'angular-ui-router';
 import uiGrid from 'angular-ui-grid';
+
 import ngResource from 'angular-resource';
 import ngMaterial from 'angular-material';
 import ngFormly from 'angular-formly';
@@ -26,6 +27,7 @@ require('angular-ui-grid/ui-grid.min.css');
 angular.module('ms-as-ui', [
     uiRouter,
     uiGrid,
+    `${uiGrid}.selection`,
     ngResource,
     ngMaterial,
     ngFormly,
@@ -44,23 +46,29 @@ angular.module('ms-as-ui', [
             controllerAs: 'vm'
 	});
 
-        $stateProvider.state('game_queues_list', {
-	    url: '/game_queues',
-	    templateUrl: '/public/templates/game_queues_list.html',
+        $stateProvider.state('game_queues', {
+            abstract: true,
+            url: '/game_queues',
+            template: '<ui-view/>'
+	});
+
+        $stateProvider.state('game_queues.list', {
+	    url: '',
+	    templateUrl: '/public/templates/list.html',
             controller: 'GameQueuesListCtrl',
             controllerAs: 'vm'
 	});
 
-        $stateProvider.state('game_queues_edit', {
-	    url: '/game_queues/edit/:id',
-	    templateUrl: '/public/templates/game_queues_edit.html',
+        $stateProvider.state('game_queues.edit', {
+	    url: '/edit/:id',
+	    templateUrl: '/public/templates/edit.html',
             controller: 'GameQueuesEditCtrl',
             controllerAs: 'vm'
 	});
 
-        $stateProvider.state('game_queues_add', {
-	    url: '/game_queues/add',
-	    templateUrl: '/public/templates/game_queues_edit.html',
+        $stateProvider.state('game_queues.add', {
+	    url: '/add',
+	    templateUrl: '/public/templates/edit.html',
             controller: 'GameQueuesEditCtrl',
             controllerAs: 'vm'
 	});
