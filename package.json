@@ -49,6 +49,7 @@
     "http-proxy": "^1.15.1",
     "image-webpack-loader": "^2.0.0",
     "imagemin": "^5.2.2",
+    "jshint-loader": "^0.8.4",
     "less": "^2.7.1",
     "less-loader": "^2.2.3",
     "ng-annotate-loader": "^0.2.0",

@@ -20,7 +20,7 @@ var config = {
         loaders: [
             {
                 test: /\.js$/,
-                loaders: ['ng-annotate', 'babel-loader'],
+                loaders: ['ng-annotate', 'babel-loader', 'jshint-loader'],
                 exclude: /node_modules/
             },
             {
