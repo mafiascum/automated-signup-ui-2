@@ -1,7 +1,6 @@
 FROM node:6.9.1
 
 RUN npm install webpack -g
-RUN npm install jshint -g
 
 WORKDIR /tmp
 COPY package.json /tmp/
