@@ -2,9 +2,6 @@ doctype html
 html
   head
     script(src='/public/js/bundle.js')
-    script(type='text/javascript').
-        angular.module('ms-as-ui').constant('SERVICE_ROOT', `#{SERVICE_ROOT}`);
-        angular.module('ms-as-ui').constant('API_TOKEN', `#{API_TOKEN}`);
   body(ng-app='ms-as-ui')
     .container
       div(ui-view='')

@@ -1,5 +1,5 @@
 // Karma configuration
-const webpackConfig = require('./webpack.config');
+//const webpackConfig = require('./webpack.config');
 
 module.exports = function (config) {
     config.set({
@@ -15,18 +15,18 @@ module.exports = function (config) {
 
         // list of files / patterns to load in the browser
         files: [
-            'client/js/**/*.spec.js'
+            'client/js/tests.webpack.js'
         ],
 
         // list of files to exclude
         exclude: [],
 
         preprocessors: {
-            'client/js/**/*.js': ['webpack']
+            'client/js/tests.webpack.js': ['webpack']
         },
-        webpack: {
-            module: webpackConfig.module,
-            resolve: webpackConfig.resolve
+        webpack: require('./webpack.config'),
+        webpackMiddleware: {
+            stats: 'errors-only'
         },
 
         // test results reporter to use
@@ -45,7 +45,7 @@ module.exports = function (config) {
 
         // level of logging
         // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
-        logLevel: config.LOG_INFO,
+        logLevel: config.LOG_DEBUG,
 
 
         // enable / disable watching file and executing tests whenever any file changes

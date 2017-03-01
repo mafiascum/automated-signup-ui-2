@@ -24,7 +24,7 @@ require("angular-xeditable");
 require('bootstrap/dist/css/bootstrap.min.css');
 require('angular-ui-grid/ui-grid.min.css');
 
-angular.module('ms-as-ui', [
+export default angular.module('ms-as-ui', [
     uiRouter,
     uiGrid,
     `${uiGrid}.selection`,
@@ -34,7 +34,11 @@ angular.module('ms-as-ui', [
     formlyBootstrap,
     'xeditable'
 ])
-    .config(/*@ngInject*/ ($stateProvider, $urlRouterProvider, $urlMatcherFactoryProvider, $httpProvider, formlyConfigProvider, API_TOKEN) => {
+    .constant('ENV', {
+        SERVICE_ROOT: process.env.SERVICE_ROOT,
+        API_TOKEN: process.env.API_TOKEN
+    })
+    .config(/*@ngInject*/ ($stateProvider, $urlRouterProvider, $urlMatcherFactoryProvider, $httpProvider, formlyConfigProvider, ENV) => {
 	$urlMatcherFactoryProvider.strictMode(false);
 
 	$urlRouterProvider.otherwise('/404');
@@ -73,9 +77,10 @@ angular.module('ms-as-ui', [
             controllerAs: 'vm'
 	});
 
-        $httpProvider.defaults.headers.common.Authorization = `Token token=${API_TOKEN}`;
+        $httpProvider.defaults.headers.common.Authorization = `Token token=${ENV.API_TOKEN}`;
     })
     .controller('MainCtrl', MainCtrl)
     .controller('GameQueuesListCtrl', GameQueuesListCtrl)
     .controller('GameQueuesEditCtrl', GameQueuesEditCtrl)
-    .factory('ApiService', ApiService);
+    .factory('ApiService', ApiService)
+    .name;

@@ -39,3 +39,4 @@ jspm_packages
 # Project specific
 dev_resources/config.env
 docker-compose.override.yml
+karma-*

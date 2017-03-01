@@ -1,4 +1,4 @@
-const apiService = /*@ngInject*/ ($resource, SERVICE_ROOT) => {
+const apiService = /*@ngInject*/ ($resource, ENV) => {
     const actions = {
         'query': {method: 'GET', isArray: false},  //has pagination object wrapped around payload
         'list': {method: 'GET', isArray: true},  //raw array
@@ -9,7 +9,7 @@ const apiService = /*@ngInject*/ ($resource, SERVICE_ROOT) => {
         'options': {method: 'OPTIONS'}
     };
 
-    return path => $resource(`${SERVICE_ROOT}/${path}/:id`, {id: '@id'}, actions);
+    return path => $resource(`${ENV.SERVICE_ROOT}/${path}/:id`, {id: '@id'}, actions);
 };
 
 export default apiService;

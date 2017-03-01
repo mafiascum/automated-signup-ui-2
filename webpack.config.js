@@ -53,7 +53,8 @@ var config = {
         new Webpack.HotModuleReplacementPlugin(),
         new Webpack.ProvidePlugin({
             _: "lodash"
-        })
+        }),
+        new Webpack.EnvironmentPlugin(['SERVICE_ROOT', 'API_TOKEN'])
     ]
 };
 
