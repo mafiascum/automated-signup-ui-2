@@ -18,7 +18,7 @@ module.exports = function () {
     });
 
     var bundler = new WebpackDevServer(compiler, {
-        publicPath: '/public/js/',
+        publicPath: '/public/',
         hot: true,
         quiet: false,
         noInfo: true,
