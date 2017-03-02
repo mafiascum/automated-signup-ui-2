@@ -15,6 +15,7 @@ import GameQueuesEditCtrl from './controllers/gameQueuesEditCtrl';
 
 //services
 import ApiService from './services/apiService';
+import ModelFieldService from './services/modelFieldService';
 
 //deps
 require('lodash');
@@ -94,4 +95,5 @@ export default angular.module('ms-as-ui', [
     .controller('GameQueuesListCtrl', GameQueuesListCtrl)
     .controller('GameQueuesEditCtrl', GameQueuesEditCtrl)
     .factory('ApiService', ApiService)
+    .factory('ModelFieldService', ModelFieldService)
     .name;

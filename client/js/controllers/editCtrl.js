@@ -1,11 +1,12 @@
-export default (resource, fields) => {
+export default (resource) => {
     return class {
         /*@ngInject*/
-        constructor(ApiService, $stateParams, $state, growl) {
+        constructor(ApiService, $stateParams, $state, growl, ModelFieldService) {
             this.$stateParams = $stateParams;
             this.$state = $state;
             this.api = ApiService(resource);
             this.growl = growl;
+            this.ModelFieldService = ModelFieldService;
 
             this.isEditMode = !!$stateParams.id;
             
@@ -13,7 +14,7 @@ export default (resource, fields) => {
         }
         
         initializeForm() {
-            this.fields = fields;
+            this.fields = this.ModelFieldService.getFieldsForEdit(resource);
             this.getData();
         }
         

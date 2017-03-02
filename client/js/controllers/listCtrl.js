@@ -1,4 +1,4 @@
-export default (resource, columnDefs) => {
+export default (resource) => {
     const coreGridOptions = {
         enableRowSelection: true,
         multiSelect: false,
@@ -9,10 +9,11 @@ export default (resource, columnDefs) => {
 
     return class {
         /*@ngInject*/
-        constructor(ApiService, $scope, $state) {
+        constructor(ApiService, $scope, $state, ModelFieldService) {
             this.api = ApiService(resource);
             this.$scope = $scope;
             this.$state = $state;
+            this.ModelFieldService = ModelFieldService;
 
             this.initializeGrid();
         }
@@ -23,7 +24,7 @@ export default (resource, columnDefs) => {
             };
 
             this.grid = angular.extend({
-                columnDefs,
+                columnDefs: this.ModelFieldService.getFieldsForList(resource),
                 data: [],
                 onRegisterApi
             }, coreGridOptions, this.options);
