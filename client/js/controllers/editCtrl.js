@@ -1,9 +1,11 @@
 export default (resource, fields) => {
     return class {
         /*@ngInject*/
-        constructor(ApiService, $stateParams) {
+        constructor(ApiService, $stateParams, $state, growl) {
             this.$stateParams = $stateParams;
+            this.$state = $state;
             this.api = ApiService(resource);
+            this.growl = growl;
 
             this.isEditMode = !!$stateParams.id;
             
@@ -31,8 +33,12 @@ export default (resource, fields) => {
             const writeFn = this.isEditMode ? 'update' : 'save';
 
             this.api[writeFn](model).$promise.then(() => {
-                console.log('update successful');
-            });
+                this.growl.success('Save successful');
+                this.$state.go('^.list');
+            })
+                .catch(e => {
+                    this.growl.error(`An error occurred: ${e}`);
+                });
         }
     };
 };
